@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Trimmer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-br from-purple-100 to-indigo-200">
+<div class="min-h-screen flex flex-col">
+    <!-- Main content -->
+    <main class="flex-grow">
+        <div class="container mx-auto px-4 py-8">
+            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-6">
+                <h1 class="text-3xl font-bold text-center text-indigo-600 mb-8">
+                    Audio Trimmer
+                    <span class="block text-sm text-gray-500 mt-2">Upload, trim, and download your audio</span>
+                </h1>
+
+                <!-- Upload Section -->
+                <div id="uploadSection" class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                    <input type="file" id="mediaInput" accept="audio/*" class="hidden">
+                    <label for="mediaInput" class="cursor-pointer">
+                        <div class="mb-4">
+                            <i class="fas fa-cloud-upload-alt text-4xl text-indigo-500"></i>
+                        </div>
+                        <p class="text-gray-600">Drag and drop your audio file or click to browse</p>
+                        <p class="text-sm text-gray-400 mt-2">Supported formats: MP3, WAV</p>
+                    </label>
+                </div>
+
+                <!-- Audio Player Section -->
+                <div id="audioSection" class="hidden mt-8">
+                    <div class="bg-gray-50 rounded-lg p-4 mb-6">
+                        <audio id="audioPlayer" controls class="w-full mb-4"></audio>
+
+                        <!-- Selected Time Display -->
+                        <div class="mb-4 text-sm text-gray-600">
+                            <p>Selected Range:</p>
+                            <p class="font-medium">Start Time: <span id="selectedStartTime">00:00</span></p>
+                            <p class="font-medium">End Time: <span id="selectedEndTime">00:00</span></p>
+                        </div>
+
+                        <!-- Time Range Selectors -->
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <span class="text-sm font-medium text-gray-600 w-20">Start Time:</span>
+                                <input type="range" id="startTimeSlider" class="flex-grow" min="0" step="0.1" value="0">
+                                <span id="startTimeDisplay" class="text-sm font-mono w-20 text-right">00:00</span>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <span class="text-sm font-medium text-gray-600 w-20">End Time:</span>
+                                <input type="range" id="endTimeSlider" class="flex-grow" min="0" step="0.1" value="0">
+                                <span id="endTimeDisplay" class="text-sm font-mono w-20 text-right">00:00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Preview Section -->
+                    <div id="previewSection" class="hidden mb-6">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-2">Preview Trimmed Audio</h3>
+                        <audio id="previewPlayer" controls class="w-full"></audio>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex space-x-4">
+                        <button id="trimButton" disabled class="flex-1 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed">
+                            <span id="trimButtonText">Trim Audio</span>
+                            <svg id="trimButtonLoader" class="hidden animate-spin ml-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                        <button id="downloadButton" class="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors hidden">
+                            Download MP3
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-4 mt-auto border-t bg-white bg-opacity-75">
+        <p class="flex items-center justify-center text-sm text-gray-600">
+            Made with
+            <span class="mx-1 text-red-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+                    </svg>
+                </span>
+            by
+            <a href="https://github.com/sourabhkumarsahu"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="ml-1 font-medium text-indigo-600 hover:text-indigo-800 hover:underline transition-colors">
+                Sourabh Sahu
+            </a>
+        </p>
+    </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
