@@ -40,7 +40,7 @@ A simple, elegant web application for trimming audio files. Perfect for content 
 
 ## 🌐 Live Demo
 
-Try it out here: [Audio Trimmer App](https://audio-trimmer-sourabh.vercel.app/)
+Try it out here: [Audio Trimmer App](https://audio-trimmer-sks.vercel.app/)
 
 ## 🚦 Getting Started
 
